@@ -51,9 +51,24 @@
         </p>
 
         <p>
+            <label>ISBN (Opsional)</label><br>
+            <input type="text" name="isbn" value="{{ old('isbn') }}">
+            @error('isbn')
+                <br><span style="color: #dc2626;">{{ $message }}</span>
+            @enderror
+        </p>
+
+        <p>
             <label>Kategori</label><br>
-            <input type="text" name="kategori" value="{{ old('kategori') }}">
-            @error('kategori')
+            <select name="category_id">
+                <option value="">-- Pilih Kategori --</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                        {{ $category->nama_kategori }}
+                    </option>
+                @endforeach
+            </select>
+            @error('category_id')
                 <br><span style="color: #dc2626;">{{ $message }}</span>
             @enderror
         </p>
